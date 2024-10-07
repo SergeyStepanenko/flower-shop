@@ -18,7 +18,9 @@
   "description": "",
   "scripts": {
     "dev": "NODE_ENV=development webpack serve --config webpack.config.ts --mode development",
-    "build": "NODE_ENV=production webpack --config webpack.config.ts --mode production"
+    "build": "NODE_ENV=production webpack --config webpack.config.ts --mode production",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\""
   },
   "dependencies": {
     "react": "18.2.0",
