@@ -23,7 +23,18 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "tsc --noEmit"
+    ],
+    "*.tsx": [
+      "eslint --fix",
+      "tsc --noEmit"
+    ]
   },
   "dependencies": {
     "react": "18.2.0",
@@ -48,6 +59,8 @@
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-react": "7.37.1",
     "html-webpack-plugin": "5.5.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.10",
     "react-refresh": "0.14.0",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
