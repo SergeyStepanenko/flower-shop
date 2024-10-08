@@ -1,10 +1,9 @@
-declare interface Window {
-  Telegram: any
+/* eslint-disable no-unused-vars */
+interface TelegramWebApp {
+  // Define the properties and methods of Telegram WebApp here, or use `any` if unsure
+  WebApp: any // Replace `any` with the correct type if available
 }
 
-declare var module: {
-  hot?: {
-    accept(dependencies?: string | string[], callback?: () => void): void
-    dispose(callback: () => void): void
-  }
+interface Window {
+  Telegram: TelegramWebApp
 }

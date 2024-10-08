@@ -1,8 +1,14 @@
 {
-  "cSpell.words": [
-    "nodenext",
-    "pmmmwh",
-    "Sergey",
-    "Stepanenko"
-  ]
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "cSpell.words": ["nodenext", "pmmmwh", "Sergey", "Stepanenko"]
 }

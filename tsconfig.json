@@ -9,7 +9,9 @@
     "jsx": "react-jsx",
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true // Skips type checking for .d.ts files in node_modules
   },
-  "include": ["src", "webpack.config.ts"]
+  "include": ["src", "webpack.config.ts"],
+  "exclude": ["node_modules"] // Exclude node_modules from being type-checked
 }

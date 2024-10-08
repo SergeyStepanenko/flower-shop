@@ -6,7 +6,7 @@ const App: React.FC = () => {
     tg.ready()
 
     // Получение данных пользователя
-    console.log('User:', tg.initDataUnsafe?.user)
+    console.log('User:', tg)
   }, [])
 
   const onClose = () => {
