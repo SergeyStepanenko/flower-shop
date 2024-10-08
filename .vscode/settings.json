@@ -10,5 +10,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "cSpell.words": ["nodenext", "pmmmwh", "Sergey", "Stepanenko"]
+  "cSpell.words": ["nodenext", "pmmmwh", "precommit", "Sergey", "Stepanenko"]
 }
