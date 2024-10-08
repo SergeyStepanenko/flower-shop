@@ -15,7 +15,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>Добро пожаловать в моё Telegram Mini App!</h1>
+      <h1>Добро пожаловать в моё Telegram Mini App приложение!</h1>
       <button onClick={onClose}>Закрыть</button>
     </div>
   )
