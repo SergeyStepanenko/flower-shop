@@ -4,14 +4,14 @@
     "module": "CommonJS",
     "lib": ["dom", "dom.iterable", "esnext"],
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "esModuleInterop": true, // Enable this flag to allow default imports from CommonJS modules
+    "allowSyntheticDefaultImports": true, // Keep this enabled for flexibility with imports
     "strict": true,
     "jsx": "react-jsx",
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true // Skips type checking for .d.ts files in node_modules
+    "skipLibCheck": true
   },
   "include": ["src", "webpack.config.ts"],
-  "exclude": ["node_modules"] // Exclude node_modules from being type-checked
+  "exclude": ["node_modules"]
 }
