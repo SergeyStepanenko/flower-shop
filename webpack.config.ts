@@ -1,17 +1,22 @@
+/* eslint-disable no-undef */
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpack from 'webpack'
 import 'webpack-dev-server'
+import {
+  linariaDevelopmentRules,
+  linariaLoaderRules,
+  linariaProductionRules,
+} from './configs/linaria'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const config: webpack.Configuration = {
   mode: isDevelopment ? 'development' : 'production',
-  entry: './src/index.tsx',
+  entry: './src/Index.tsx',
   output: {
-    // eslint-disable-next-line no-undef
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/', // For React Router
@@ -22,24 +27,9 @@ const config: webpack.Configuration = {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: [
-          { loader: 'babel-loader' },
-          {
-            loader: '@wyw-in-js/webpack-loader',
-            options: { sourceMap: isDevelopment },
-          },
-        ],
+        use: [{ loader: 'babel-loader' }, ...linariaLoaderRules(isDevelopment)],
       },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: MiniCssExtractPlugin.loader },
-          {
-            loader: 'css-loader',
-            options: { sourceMap: isDevelopment },
-          },
-        ],
-      },
+      ...(isDevelopment ? linariaDevelopmentRules : linariaProductionRules),
     ],
   },
   resolve: {
@@ -47,12 +37,15 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
+    // new MiniCssExtractPlugin({ filename: 'styles-[contenthash].css' }),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+      chunkFilename: '[name].styles.css',
+    }),
     isDevelopment && new ReactRefreshWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: 'styles-[contenthash].css' }),
   ].filter(Boolean) as webpack.WebpackPluginInstance[],
   devServer: {
     static: {
-      // eslint-disable-next-line no-undef
       directory: path.join(__dirname, 'public'),
     },
     hot: true,
@@ -64,5 +57,4 @@ const config: webpack.Configuration = {
   },
 }
 
-// Export the configuration
 export default config

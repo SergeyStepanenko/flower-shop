@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
-import { IndexPage } from './pages/Main'
+import { IndexPage } from './pages/IndexPage'
+import { tg } from './constants'
 
 const App: React.FC = () => {
   useEffect(() => {
-    const tg = window.Telegram.WebApp
     tg.ready()
-
     // Получение данных пользователя
-    console.log('User:', tg)
+    console.log('Telegram:', tg)
   }, [])
 
   return <IndexPage />
