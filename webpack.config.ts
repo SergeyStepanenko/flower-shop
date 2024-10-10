@@ -1,15 +1,11 @@
 /* eslint-disable no-undef */
-import path from 'path'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import path from 'path'
 import webpack from 'webpack'
 import 'webpack-dev-server'
-import {
-  linariaDevelopmentRules,
-  linariaLoaderRules,
-  linariaProductionRules,
-} from './webpack/linaria'
+import { linariaCssLoaderRules, linariaJsLoaderRules } from './webpack/linaria'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -27,13 +23,16 @@ const config: webpack.Configuration = {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }, ...linariaLoaderRules(isDevelopment)],
+        use: [
+          { loader: 'babel-loader' },
+          ...linariaJsLoaderRules(isDevelopment),
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i, // Rule for image files including .webp
         type: 'asset/resource', // Webpack 5 built-in asset module
       },
-      ...(isDevelopment ? linariaDevelopmentRules : linariaProductionRules),
+      ...linariaCssLoaderRules(isDevelopment),
     ],
   },
   resolve: {

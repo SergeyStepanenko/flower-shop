@@ -1,35 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-export const linariaDevelopmentRules = [
-  {
-    test: /\.css$/,
-    use: [
-      'css-hot-loader',
-      MiniCssExtractPlugin.loader,
-      {
-        loader: 'css-loader',
-        options: { sourceMap: true },
-      },
-    ],
-  },
-]
-
-export const linariaProductionRules = [
-  {
-    test: /\.css$/,
-    use: [
-      MiniCssExtractPlugin.loader,
-      {
-        loader: 'css-loader',
-        options: {
-          sourceMap: false,
-        },
-      },
-    ],
-  },
-]
-
-export const linariaLoaderRules = (isDevelopment: boolean) => [
+export const linariaJsLoaderRules = (isDevelopment: boolean) => [
   {
     loader: '@wyw-in-js/webpack-loader',
     options: {
@@ -42,3 +13,31 @@ export const linariaLoaderRules = (isDevelopment: boolean) => [
     },
   },
 ]
+
+export const linariaCssLoaderRules = (isDevelopment: boolean) =>
+  isDevelopment
+    ? [
+        {
+          test: /\.css$/,
+          use: [
+            'css-hot-loader',
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true },
+            },
+          ],
+        },
+      ]
+    : [
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: { sourceMap: false },
+            },
+          ],
+        },
+      ]
