@@ -8,7 +8,7 @@ export const Welcome: FC = () => {
 
   return (
     <div>
-      <Title>Добро пожаловать в моё Telegram Mini App приложение!</Title>
+      <Title>Добро пожаловать в мой Telegram Mini App!</Title>
       <button onClick={onClose}>Close Mini App</button>
     </div>
   )
