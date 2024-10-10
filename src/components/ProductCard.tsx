@@ -57,6 +57,7 @@ const ProductPrice = styled.p`
   margin: 12px 0;
 `
 const OrderButton = styled.button`
+  width: 100%;
   background-color: #007bff;
   color: white;
   font-size: 16px;

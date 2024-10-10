@@ -9,7 +9,7 @@ import {
   linariaDevelopmentRules,
   linariaLoaderRules,
   linariaProductionRules,
-} from './configs/linaria'
+} from './webpack/linaria'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -34,6 +34,9 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    fallback: {
+      url: require.resolve('url/'), // Polyfill for the Node.js 'url' module
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
