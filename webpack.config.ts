@@ -3,13 +3,13 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
-import webpack from 'webpack'
+import { Configuration, WebpackPluginInstance } from 'webpack'
 import 'webpack-dev-server'
 import { linariaCssLoaderRules, linariaJsLoaderRules } from './webpack/linaria'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   mode: isDevelopment ? 'development' : 'production',
   entry: './src/Index.tsx',
   output: {
@@ -48,7 +48,7 @@ const config: webpack.Configuration = {
       chunkFilename: '[name].styles.css',
     }),
     isDevelopment && new ReactRefreshWebpackPlugin(),
-  ].filter(Boolean) as webpack.WebpackPluginInstance[],
+  ].filter(Boolean) as WebpackPluginInstance[],
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
