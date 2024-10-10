@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { styled } from '@linaria/react'
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -15,10 +16,15 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>Добро пожаловать в моё Telegram Mini App приложение!</h1>
+      <Title>Добро пожаловать в моё Telegram Mini App приложение!</Title>
       <button onClick={onClose}>Закрыть</button>
     </div>
   )
 }
 
 export default App
+
+const Title = styled.h1`
+  font-size: 32px;
+  color: #333;
+`

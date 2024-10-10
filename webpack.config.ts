@@ -1,6 +1,7 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpack from 'webpack'
 import 'webpack-dev-server'
 
@@ -21,19 +22,33 @@ const config: webpack.Configuration = {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: [
+          { loader: 'babel-loader' },
+          {
+            loader: '@wyw-in-js/webpack-loader',
+            options: { sourceMap: isDevelopment },
+          },
+        ],
       },
-      // Add other loaders if necessary
+      {
+        test: /\.css$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css-loader',
+            options: { sourceMap: isDevelopment },
+          },
+        ],
+      },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
     isDevelopment && new ReactRefreshWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: 'styles-[contenthash].css' }),
   ].filter(Boolean) as webpack.WebpackPluginInstance[],
   devServer: {
     static: {

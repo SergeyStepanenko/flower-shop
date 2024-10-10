@@ -3,8 +3,6 @@ module.exports = {
     '@babel/preset-env',
     '@babel/preset-react',
     '@babel/preset-typescript',
+    '@linaria/babel-preset',
   ],
-  plugins: [
-    process.env.NODE_ENV === 'development' && 'react-refresh/babel',
-  ].filter(Boolean),
 }
