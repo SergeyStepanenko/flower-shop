@@ -29,6 +29,10 @@ const config: webpack.Configuration = {
         exclude: /node_modules/,
         use: [{ loader: 'babel-loader' }, ...linariaLoaderRules(isDevelopment)],
       },
+      {
+        test: /\.(png|jpe?g|gif|webp)$/i, // Rule for image files including .webp
+        type: 'asset/resource', // Webpack 5 built-in asset module
+      },
       ...(isDevelopment ? linariaDevelopmentRules : linariaProductionRules),
     ],
   },
@@ -40,7 +44,6 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './public/index.html' }),
-    // new MiniCssExtractPlugin({ filename: 'styles-[contenthash].css' }),
     new MiniCssExtractPlugin({
       filename: 'styles.css',
       chunkFilename: '[name].styles.css',

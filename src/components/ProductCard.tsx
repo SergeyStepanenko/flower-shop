@@ -1,22 +1,32 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { styled } from '@linaria/react'
 
 // React component
-export const ProductCard: React.FC = () => {
+export const ProductCard: FC<Product> = ({
+  title,
+  description,
+  price,
+  imageUrl,
+}) => {
   return (
     <Card>
-      <ProductImage src="https://via.placeholder.com/300" alt="Product Image" />
-      <ProductTitle>Product Title</ProductTitle>
+      <ProductImage src={imageUrl} alt="Product Image" />
+      <ProductTitle>{title}</ProductTitle>
       <ProductDescriptionBlock>
-        <ProductDescription>
-          This is a brief description of the product. It highlights key features
-          and benefits.
-        </ProductDescription>
-        <ProductPrice>$49.99</ProductPrice>
+        <ProductDescription>{description}</ProductDescription>
+        <ProductPrice>{price}</ProductPrice>
         <OrderButton>Заказать</OrderButton>
       </ProductDescriptionBlock>
     </Card>
   )
+}
+
+export type Product = {
+  id: number
+  title: string
+  description: string
+  price: string
+  imageUrl: string
 }
 
 const Card = styled.div`
