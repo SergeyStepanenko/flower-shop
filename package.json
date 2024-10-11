@@ -14,16 +14,18 @@
   "bugs": {
     "url": "https://github.com/SergeyStepanenko/flower-shop/issues"
   },
-  "homepage": "https://github.com/SergeyStepanenko/flower-shop#readme",
+  "homepage": "https://sergeystepanenko.github.io/flower-shop",
   "description": "",
   "scripts": {
-    "development": "NODE_ENV=development webpack serve --config webpack.config.ts",
-    "build": "rm -rf dist && npm run tsc && NODE_ENV=production webpack --config webpack.config.ts",
     "tsc": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
+    "development": "NODE_ENV=development webpack serve --config webpack.config.ts",
+    "build": "rm -rf dist && npm run tsc && NODE_ENV=production webpack --config webpack.config.ts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "react": "18.2.0",

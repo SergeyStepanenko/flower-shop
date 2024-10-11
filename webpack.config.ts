@@ -13,9 +13,9 @@ const config: Configuration = {
   mode: isDevelopment ? 'development' : 'production',
   entry: './src/Index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/', // For React Router
+    publicPath: '/flower-shop/',
   },
   devtool: isDevelopment ? 'inline-source-map' : false,
   module: {
