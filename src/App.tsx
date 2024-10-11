@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useTelegram } from './hooks/useTelegram'
 import { IndexPage } from './pages/IndexPage'
-import { tg } from './constants'
 
 const App: React.FC = () => {
-  useEffect(() => {
-    tg.ready()
-    // Получение данных пользователя
-    console.log('Telegram:', tg)
-  }, [])
+  useTelegram()
 
   return <IndexPage />
 }

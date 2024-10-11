@@ -3,7 +3,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
-import { Configuration, WebpackPluginInstance } from 'webpack'
+import { Configuration } from 'webpack'
 import 'webpack-dev-server'
 import { linariaCssLoaderRules, linariaJsLoaderRules } from './webpack/linaria'
 
@@ -48,13 +48,13 @@ const config: Configuration = {
       chunkFilename: '[name].styles.css',
     }),
     isDevelopment && new ReactRefreshWebpackPlugin(),
-  ].filter(Boolean) as WebpackPluginInstance[],
+  ].filter(Boolean),
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
     },
     hot: true,
-    port: 3000,
+    port: 3001,
     historyApiFallback: true, // For React Router
     client: {
       overlay: true,
