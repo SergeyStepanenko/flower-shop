@@ -1,12 +1,15 @@
 /* eslint-disable no-undef */
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import * as dotenv from 'dotenv'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
 import { Configuration } from 'webpack'
 import 'webpack-dev-server'
 import { linariaCssLoaderRules, linariaJsLoaderRules } from './webpack/linaria'
+import fs from 'fs'
 
+dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const config: Configuration = {
@@ -15,7 +18,7 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/flower-shop/',
+    publicPath: isDevelopment ? '/' : process.env.WEBPACK_PUBLIC_PATH,
   },
   devtool: isDevelopment ? 'inline-source-map' : false,
   module: {
@@ -54,10 +57,18 @@ const config: Configuration = {
       directory: path.join(__dirname, 'public'),
     },
     hot: true,
-    port: 3001,
+    port: 443, // Set the port to 443
     historyApiFallback: true, // For React Router
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, '.cert/localhost-key.pem')), // Your key path
+      cert: fs.readFileSync(path.resolve(__dirname, '.cert/localhost.pem')), // Your cert path
+    },
     client: {
       overlay: true,
+    },
+    allowedHosts: 'all', // Allow all hosts, including ngrok
+    headers: {
+      'Access-Control-Allow-Origin': '*', // To allow ngrok access
     },
   },
 }

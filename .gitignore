@@ -44,5 +44,6 @@ coverage/
 
 # dotenv environment variables file
 .env
+!.env.example
 
 .DS_Store

@@ -2,7 +2,7 @@ import { styled } from '@linaria/react'
 import React, { FC } from 'react'
 
 export const Welcome: FC = () => {
-  return <Title>Добро пожаловать в магазин цветов</Title>
+  return <Title>Добро пожаловать в магазин цветов!</Title>
 }
 
 const Title = styled.h1`
