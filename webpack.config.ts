@@ -7,7 +7,7 @@ import path from 'path'
 import { Configuration } from 'webpack'
 import 'webpack-dev-server'
 import { linariaCssLoaderRules, linariaJsLoaderRules } from './webpack/linaria'
-import fs from 'fs'
+// import fs from 'fs'
 
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -57,19 +57,20 @@ const config: Configuration = {
       directory: path.join(__dirname, 'public'),
     },
     hot: true,
-    port: 443, // Set the port to 443
     historyApiFallback: true, // For React Router
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, '.cert/localhost-key.pem')), // Your key path
-      cert: fs.readFileSync(path.resolve(__dirname, '.cert/localhost.pem')), // Your cert path
-    },
     client: {
       overlay: true,
     },
-    allowedHosts: 'all', // Allow all hosts, including ngrok
-    headers: {
-      'Access-Control-Allow-Origin': '*', // To allow ngrok access
-    },
+    // ЕСЛИ НУЖНО ЗАПУСТИТЬ ПО HTTPS
+    // port: 443, // Set the port to 443
+    // https: {
+    //   key: fs.readFileSync(path.resolve(__dirname, '.cert/localhost-key.pem')), // Your key path
+    //   cert: fs.readFileSync(path.resolve(__dirname, '.cert/localhost.pem')), // Your cert path
+    // },
+    // allowedHosts: 'all', // Allow all hosts, including ngrok
+    // headers: {
+    //   'Access-Control-Allow-Origin': '*', // To allow ngrok access
+    // },
   },
 }
 

@@ -5,6 +5,7 @@ export const useTelegram = () => {
 
   useEffect(() => {
     tg.ready() // Notify Telegram that your app is ready
+    tg.expand() // Expand the mini app
   }, [tg])
 
   const closeApp = () => {
