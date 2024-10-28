@@ -2,7 +2,7 @@ import axios from 'axios'
 import http from 'http'
 import dotenv from 'dotenv'
 dotenv.config() // Load environment variables
-import { PaymentData } from '../client/components/ProductCard'
+import { PaymentData } from '../components/ProductCard'
 
 const PORT = 3000
 const BOT_TOKEN = process.env.TELEGRAM_BOT_PRODUCTION_API_KEY
@@ -49,7 +49,7 @@ const sendInvoice = async (chatId: string) => {
     description: 'A delicious burger with fries and a drink',
     currency: 'USD',
     totalAmount: 500, // Amount in smallest currency units, e.g., cents
-  }
+  } as const
 
   try {
     const response = await axios.post(
