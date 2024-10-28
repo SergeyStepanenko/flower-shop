@@ -17,7 +17,7 @@
   "homepage": "https://sergeystepanenko.github.io/flower-shop",
   "description": "",
   "scripts": {
-    "tsc": "bash -c tsc --noEmit",
+    "tsc": "bash -c tsc",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss,md}\"",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
