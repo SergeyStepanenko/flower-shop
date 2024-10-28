@@ -1,6 +1,16 @@
 import React, { FC } from 'react'
 import { styled } from '@linaria/react'
 
+const paymentData = {
+  productId: '12345',
+  title: 'Burger Meal',
+  description: 'A delicious burger with fries and a drink',
+  currency: 'USD',
+  totalAmount: 500, // Amount in smallest currency units, e.g., cents
+}
+
+export type PaymentData = typeof paymentData
+
 // React component
 export const ProductCard: FC<Product> = ({
   title,
@@ -8,6 +18,18 @@ export const ProductCard: FC<Product> = ({
   price,
   imageUrl,
 }) => {
+  const handleOrderButtonClick = () => {
+    window.Telegram.WebApp.sendData(
+      JSON.stringify({
+        productId: '12345',
+        title: 'Burger Meal',
+        description: 'A delicious burger with fries and a drink',
+        currency: 'USD',
+        totalAmount: 500, // Amount in smallest currency units, e.g., cents
+      }),
+    )
+  }
+
   return (
     <Card>
       <ProductImage src={imageUrl} alt="Product Image" />
@@ -15,7 +37,7 @@ export const ProductCard: FC<Product> = ({
       <ProductDescriptionBlock>
         <ProductDescription>{description}</ProductDescription>
         <ProductPrice>{price}</ProductPrice>
-        <OrderButton>Заказать</OrderButton>
+        <OrderButton onClick={handleOrderButtonClick}>Заказать</OrderButton>
       </ProductDescriptionBlock>
     </Card>
   )

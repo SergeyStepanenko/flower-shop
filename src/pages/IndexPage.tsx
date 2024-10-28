@@ -4,14 +4,16 @@ import { ProductsList } from '../components/ProductsList'
 import { useTelegram } from '../hooks/useTelegram'
 
 export const IndexPage: FC = () => {
-  const { closeApp, sendData } = useTelegram()
-
   return (
     <div>
       <Welcome />
       <ProductsList />
-      <button onClick={closeApp}>Close App</button>
-      <button onClick={() => sendData('Some important data')}>Send Data</button>
+      {/* <button onClick={window.Telegram.WebApp.close}>Close App</button>
+      <button
+        onClick={() => window.Telegram.WebApp.sendData('Some important data')}
+      >
+        Send Data
+      </button> */}
     </div>
   )
 }

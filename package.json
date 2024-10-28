@@ -25,9 +25,11 @@
     "development": "NODE_ENV=development webpack serve --config webpack.config.ts",
     "build": "rm -rf dist && npm run tsc && NODE_ENV=production webpack --config webpack.config.ts",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "server": "nodemon"
   },
   "dependencies": {
+    "axios": "1.7.7",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -64,6 +66,7 @@
     "husky": "8.0.0",
     "lint-staged": "15.2.10",
     "mini-css-extract-plugin": "2.9.1",
+    "nodemon": "3.1.7",
     "react-refresh": "0.14.0",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",

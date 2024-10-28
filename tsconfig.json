@@ -7,7 +7,7 @@
     "esModuleInterop": true, // Enable this flag to allow default imports from CommonJS modules
     "allowSyntheticDefaultImports": true, // Keep this enabled for flexibility with imports
     "strict": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true

@@ -4,11 +4,12 @@ import * as dotenv from 'dotenv'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
-import { Configuration } from 'webpack'
+import { Configuration, DefinePlugin } from 'webpack'
 import 'webpack-dev-server'
-import { linariaCssLoaderRules, linariaJsLoaderRules } from './webpack/linaria'
+import { linariaCssLoaderRules, linariaJsLoader } from './webpack/linaria'
 import fs from 'fs'
 
+// Load environment variables from .env
 dotenv.config()
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -26,10 +27,7 @@ const config: Configuration = {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: [
-          { loader: 'babel-loader' },
-          ...linariaJsLoaderRules(isDevelopment),
-        ],
+        use: [{ loader: 'babel-loader' }, ...linariaJsLoader(isDevelopment)],
       },
       {
         test: /\.(png|jpe?g|gif|webp)$/i, // Rule for image files including .webp
@@ -51,6 +49,10 @@ const config: Configuration = {
       chunkFilename: '[name].styles.css',
     }),
     isDevelopment && new ReactRefreshWebpackPlugin(),
+    // DefinePlugin to inject environment variables properly into browser code
+    new DefinePlugin({
+      'process.env': JSON.stringify(process.env), // Inject all process.env variables
+    }),
   ].filter(Boolean),
   devServer: {
     static: {

@@ -1,6 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
-export const linariaJsLoaderRules = (isDevelopment: boolean) => [
+export const linariaJsLoader = (isDevelopment: boolean) => [
   {
     loader: '@wyw-in-js/webpack-loader',
     options: {
