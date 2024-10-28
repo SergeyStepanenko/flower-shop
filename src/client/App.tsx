@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { IndexPage } from './pages/IndexPage'
 
-const App: React.FC = () => {
+const App: FC = () => {
   useEffect(() => {
     Telegram.WebApp.ready()
     Telegram.WebApp.ready()
