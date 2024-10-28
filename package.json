@@ -31,12 +31,17 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,json,css,scss,md}": [
-      "npm run format"
+      "npm run format",
+      "npm run lint"
     ],
     "src/**/*.{ts,tsx,js,jsx}": [
-      "npm run lint",
-      "npm run tsc"
+      "bash -c tsc --noEmit"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "axios": "1.7.7",

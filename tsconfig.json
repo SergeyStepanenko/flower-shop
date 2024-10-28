@@ -12,6 +12,6 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "include": ["src/client", "webpack.config.ts", "src/client/server", "webpack"],
+  "include": ["src/client/global.d.ts", "src/client/custom.d.ts", "src/client", "webpack.config.ts", "src/client/server", "webpack"],
   "exclude": ["node_modules"]
 }
