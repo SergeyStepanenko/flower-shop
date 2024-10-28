@@ -2,7 +2,6 @@ import axios from 'axios'
 import http from 'http'
 import dotenv from 'dotenv'
 dotenv.config() // Load environment variables
-import { PaymentData } from '../components/ProductCard'
 
 const PORT = 3000
 const BOT_TOKEN = process.env.TELEGRAM_BOT_PRODUCTION_API_KEY

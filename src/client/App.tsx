@@ -4,7 +4,6 @@ import { IndexPage } from './pages/IndexPage'
 const App: FC = () => {
   useEffect(() => {
     Telegram.WebApp.ready()
-    Telegram.WebApp.ready()
     Telegram.WebApp.expand()
     Telegram.WebApp.MainButton.isVisible = true
 
