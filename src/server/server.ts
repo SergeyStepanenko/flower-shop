@@ -1,8 +1,9 @@
-import express from 'express'
 import cors from 'cors'
+import express from 'express'
+import { API, ProductApi } from '../common/api'
 import { startCommand } from './bot/commands/startCommand'
+import { createInvoiceLink } from './controllers/createInvoiceLinkController'
 import { sendInvoice } from './controllers/sendInvoiceController'
-import { API } from '../common/api'
 
 const PORT = 3000
 const app = express()
@@ -12,18 +13,6 @@ app.use(cors())
 
 // Middleware to parse JSON requests
 app.use(express.json())
-
-// Route to handle start payment
-app.post(API.startPayment, async (req, res) => {
-  try {
-    const { chatId } = req.body // Extract data from request body
-    await sendInvoice(chatId)
-    res.status(200).json({ status: 'Invoice sent' })
-  } catch (error) {
-    console.error('Error sending invoice:', error)
-    res.status(500).json({ error: 'Failed to send invoice' })
-  }
-})
 
 // Webhook endpoint
 app.post('/', async (req, res) => {
@@ -49,6 +38,30 @@ app.post('/', async (req, res) => {
   } catch (error) {
     console.error('Error processing update:', error)
     res.status(400).json({ error: 'Bad Request' })
+  }
+})
+
+// Route to handle start payment
+app.post(API.startPayment, async (req, res) => {
+  try {
+    const { chatId } = req.body // Extract data from request body
+    await sendInvoice(chatId)
+    res.status(200).json({ status: 'Invoice sent' })
+  } catch (error) {
+    console.error('Error sending invoice:', error)
+    res.status(500).json({ error: 'Failed to send invoice' })
+  }
+})
+
+app.post(API.createInvoice, async (req, res) => {
+  try {
+    res.json({
+      status: 'Invoice created',
+      invoiceLink: await createInvoiceLink(req.body as ProductApi),
+    })
+  } catch (error) {
+    console.error('Error creating invoice:', error)
+    res.status(500).json({ status: 'Error', error: '' })
   }
 })
 

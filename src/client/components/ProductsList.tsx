@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { styled } from '@linaria/react'
-import { ProductCard, Product } from './ProductCard'
+import { Product, ProductCard } from './ProductCard'
 import rosesImage from '../assets/images/roses.webp'
-import { API } from '../../common/api'
+import { API, ProductApi } from '../../common/api'
 
-export const ProductsList: React.FC = () => {
+export const ProductsList: FC = () => {
   // Временно создадим массив данных для двух строк продуктов (4 продукта)
   const products: Product[] = [
     {
@@ -38,7 +38,7 @@ export const ProductsList: React.FC = () => {
   ]
 
   const handlePayment = async (productId: number) => {
-    const paymentData = {
+    const paymentData: ProductApi = {
       productId: '12345',
       title: 'Burger Meal',
       description: 'A delicious burger with fries and a drink',
@@ -49,12 +49,19 @@ export const ProductsList: React.FC = () => {
 
     try {
       // Send the payment data to your bot backend without closing the Mini App
-      await fetch(`${process.env.SERVER_URL}${API.startPayment}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = (await fetch(
+        `${process.env.API_BASE_URL}${API.createInvoice}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(paymentData),
         },
-        body: JSON.stringify(paymentData),
+      )) as Response
+
+      const json = await response.json()
+
+      Telegram.WebApp.openInvoice(json.invoiceLink, status => {
+        status
       })
     } catch (error) {
       console.error(error)
