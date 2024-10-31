@@ -48,7 +48,7 @@ export const ProductsList: React.FC = () => {
 
     try {
       // Send the payment data to your bot backend without closing the Mini App
-      await fetch('https://afe7-103-46-7-96.ngrok-free.app/start-payment', {
+      await fetch(`${process.env.SERVER_URL}/start-payment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
