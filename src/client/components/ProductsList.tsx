@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from '@linaria/react'
 import { ProductCard, Product } from './ProductCard'
 import rosesImage from '../assets/images/roses.webp'
+import { API } from '../../common/api'
 
 export const ProductsList: React.FC = () => {
   // Временно создадим массив данных для двух строк продуктов (4 продукта)
@@ -48,7 +49,7 @@ export const ProductsList: React.FC = () => {
 
     try {
       // Send the payment data to your bot backend without closing the Mini App
-      await fetch(`${process.env.SERVER_URL}/start-payment`, {
+      await fetch(`${process.env.SERVER_URL}${API.startPayment}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

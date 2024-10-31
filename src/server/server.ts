@@ -21,9 +21,7 @@ const server = http.createServer((req, res) => {
   if (req.url === API.startPayment && req.method === 'POST') {
     let body = ''
 
-    req.on('data', chunk => {
-      body += chunk.toString()
-    })
+    req.on('data', chunk => (body += chunk.toString()))
 
     req.on('end', async () => {
       const paymentData = JSON.parse(body)
