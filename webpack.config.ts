@@ -15,7 +15,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const config: Configuration = {
   mode: isDevelopment ? 'development' : 'production',
-  entry: './src/client/index.tsx',
+  entry: './src/client/client.tsx',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',

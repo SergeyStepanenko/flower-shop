@@ -1,33 +1,12 @@
 import React, { FC } from 'react'
 import { styled } from '@linaria/react'
 
-const paymentData = {
-  productId: '12345',
-  title: 'Burger Meal',
-  description: 'A delicious burger with fries and a drink',
-  currency: 'USD',
-  totalAmount: 500, // Amount in smallest currency units, e.g., cents
-}
-
-export type PaymentData = typeof paymentData
-
 // React component
-export const ProductCard: FC<Product> = ({
-  title,
-  description,
-  price,
-  imageUrl,
-}) => {
+export const ProductCard: FC<
+  Product & { onBuyClick: (productId: number) => void }
+> = ({ id, title, description, price, imageUrl, onBuyClick }) => {
   const handleOrderButtonClick = () => {
-    window.Telegram.WebApp.sendData(
-      JSON.stringify({
-        productId: '12345',
-        title: 'Burger Meal',
-        description: 'A delicious burger with fries and a drink',
-        currency: 'USD',
-        totalAmount: 500, // Amount in smallest currency units, e.g., cents
-      }),
-    )
+    onBuyClick(id)
   }
 
   return (

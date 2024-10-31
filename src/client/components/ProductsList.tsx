@@ -36,10 +36,34 @@ export const ProductsList: React.FC = () => {
     },
   ]
 
+  const handlePayment = async (productId: number) => {
+    const paymentData = {
+      productId: '12345',
+      title: 'Burger Meal',
+      description: 'A delicious burger with fries and a drink',
+      currency: 'USD',
+      totalAmount: 499, // Amount in cents (e.g., $4.99)
+      chatId: Telegram.WebApp.initDataUnsafe.user!.id, // Get the user’s chat ID if available
+    }
+
+    try {
+      // Send the payment data to your bot backend without closing the Mini App
+      await fetch('https://afe7-103-46-7-96.ngrok-free.app/start-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentData),
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <ProductsListContainer>
       {products.map(product => (
-        <ProductCard key={product.id} {...product} />
+        <ProductCard key={product.id} {...product} onBuyClick={handlePayment} />
       ))}
     </ProductsListContainer>
   )
