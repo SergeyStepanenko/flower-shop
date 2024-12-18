@@ -61,7 +61,7 @@ export const ProductsList: FC = () => {
       const json = await response.json()
 
       Telegram.WebApp.openInvoice(json.invoiceLink, status => {
-        status
+        console.log({ status })
       })
     } catch (error) {
       console.error(error)

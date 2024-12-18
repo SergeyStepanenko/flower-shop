@@ -1,13 +1,12 @@
-/* eslint-disable no-undef */
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import * as dotenv from 'dotenv'
+import fs from 'fs'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path from 'path'
 import { Configuration, DefinePlugin } from 'webpack'
 import 'webpack-dev-server'
 import { linariaCssLoaderRules, linariaJsLoader } from './webpack/linaria'
-import fs from 'fs'
 
 // Load environment variables from .env
 dotenv.config()
